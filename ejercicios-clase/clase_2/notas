@@ -1,0 +1,5 @@
+Diferencia entre un compilador y un interprete
+Un compilador genera un binario que se ejecuta después de traducir el lenguaje maquina al target necesario
+El interprete va ejecutando linea por linea y ejecutando una a la vez
+
+
