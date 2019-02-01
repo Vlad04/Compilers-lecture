@@ -3,7 +3,7 @@
 //Finally run as ./my_compiler < hello_world.c
 #include<stdio.h>
 
-int brace,brack,paren,line;
+int brace,brack,parenthesis,line;
 
 void incomment();
 void inquote(int c);
@@ -26,29 +26,29 @@ int main(void)
         else
             search(c);
     }
-    if( brace < 0)
+    
+    if( brace < 0 || brace > 0)
     {
-        printf("Unmatched Braces\n");
+        printf("Error in Braces\n");
         brace = 0;
     }   
-    else if( brack < 0)
+    else if( brack < 0 || brack > 0)
     {
-        printf("Unmatched brackets\n");
+        printf("Error in brackets\n");
         brack = 0;
     }
-    else if( paren < 0)
+    else if( parenthesis < 0 || parenthesis > 0)
     {
-        printf("Unmatched parenthesis\n");
-        paren = 0;
+        printf("Error in parenthesis\n");
+        parenthesis = 0;
     }
     
-    if(brace > 0)
-        printf("Unmatched braces\n");
-    else if(brack > 0)
-        printf("Unmatched brackets\n");
-    else if(paren > 0)
-        printf("Unmatched parenthesis\n"); 
-
+    if(brace == 0 && brack == 0 && parenthesis == 0)
+    {
+        printf("All your code is nice on terms of syntax :) \n");
+    }
+    
+    
     return 0;
 }
 
@@ -90,8 +90,8 @@ void search(int c)
     else if( c == ')')
         brack++;
     else if( c == '[')
-        paren--;
+        parenthesis--;
     else if( c == ']')
-        paren++;
+        parenthesis++;
 }
 
