@@ -10,7 +10,7 @@ and brackets. First we need to check all the file, for this we are going to use 
 "getchar()" and the EOF (End of File) variable to make a while method to check every character 
 on the file, then we have three functions: inComment(), inQuote, search().
 
-The preincipal method is search() method that will use three type of counters (countBraces, 
+The principal method is search() method that will use three type of counters (countBraces, 
 countParentehis and countBrackets), every time that our compiler finds a "{" will increate 
 the countBrackets by 1, and every time that finds a "}" will decrease the counter by 1, and 
 this will work on the same way for the another counters, then we only check if the counter is 
