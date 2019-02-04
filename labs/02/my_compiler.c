@@ -15,39 +15,37 @@ int main(void)
     
 
     while((c=getchar())!=EOF){
-        while((c=getchar())!='\n')
-        {
-            if( c == '/')
-                if((c=getchar())== '*')
-                    incomment();
-                else 
-                    search(c);
-            else if( c == '\'' || c == '"')
-                inquote(c);
-            else
+
+        if( c == '/')
+            if((c=getchar())== '*')
+                incomment();
+            else 
                 search(c);
-         line++;
-         }
+        else if( c == '\'' || c == '"')
+            inquote(c);
+        else
+            search(c);
+         
     }
     
     if( brace != 0)
     {
-        printf("Error in Braces \n");
+        printf(" Error in Braces \n");
         brace = 0;
     }   
     else if( brackets != 0)
     {
-        printf("Error in brackets\n");
+        printf(" Error in brackets\n");
         brackets = 0;
     }
     else if( parenthesis != 0)
     {
-        printf("Error in parenthesis\n");
+        printf(" Error in parenthesis\n");
         parenthesis = 0;
     }
     
     else {
-        printf("All your code is nice on terms of syntax :) \n");
+        printf(" All your code is nice on terms of syntax :) \n");
     }
     
     
@@ -81,7 +79,6 @@ void inquote(int c)
 
 void search(int c)
 {
-    extern int brace,brack,paren;
 
     if ( c == '{')
         brace--;
