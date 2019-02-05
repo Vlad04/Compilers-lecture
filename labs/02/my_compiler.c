@@ -3,29 +3,31 @@
 //Finally run as ./my_compiler < hello_world.c
 #include<stdio.h>
 
-int brace,brackets,parenthesis,line;
+int brace,brackets,parenthesis,quotes;
 
 void incomment();
-void inquote(int c);
 void search(int c);
-
+void singleComment(int c);
 int main(void)
 {
     int c;
-    
+
 
     while((c=getchar())!=EOF){
 
-        if( c == '/')
-            if((c=getchar())== '*')
+        if( c == '/'){
+            if((c=getchar())== '*'){
                 incomment();
-            else 
-                search(c);
-        else if( c == '\'' || c == '"')
-            inquote(c);
-        else
+            }
+            else if( c == '/'){
+                while( c != '\n'){
+                    c=getchar();
+                }
+            }
+        } 
+        else{
             search(c);
-         
+        }
     }
     
     if( brace != 0)
@@ -43,7 +45,11 @@ int main(void)
         printf(" Error in parenthesis\n");
         parenthesis = 0;
     }
-    
+    else if(quotes % 2 != 0)
+    {
+        printf(" Error in quotes\n");
+        quotes=0;
+    }
     else {
         printf(" All your code is nice on terms of syntax :) \n");
     }
@@ -51,6 +57,7 @@ int main(void)
     
     return 0;
 }
+
 
 void incomment()
 {
@@ -66,31 +73,30 @@ void incomment()
     }
 }
 
-void inquote(int c)
-{
-    int d;
-
-    putchar(c);
-
-    while((d=getchar())!=c)
-        if( d == '\\')
-            getchar();
-}
-
 void search(int c)
 {
 
-    if ( c == '{')
+    if ( c == '{'){
         brace--;
-    else if ( c == '}')
+    }
+    else if ( c == '}'){
         brace++;
-    else if( c == '(')
+    }
+    else if( c == '('){
         parenthesis--;
-    else if( c == ')')
+    }
+    else if( c == ')'){
         parenthesis++;
-    else if( c == '[')
+    }
+    else if( c == '['){
         brackets--;
-    else if( c == ']')
+    }
+    else if( c == ']'){
         brackets++;
+    }
+    else if( c == '"'){
+        quotes++;
+    }
+      
 }
 
