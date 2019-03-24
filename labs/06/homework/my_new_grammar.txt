@@ -1,5 +1,0 @@
-S -> T newline | F newline 
-T -> intdcl id | print id | floatdcl id 
-F -> id assign G R 
-R -> minus G R | plus G R | division G R | multiplication G R | λ 
-G -> id | inum | fnum 
